@@ -88,16 +88,6 @@
         </div>
         </div>
 
-    <div id="reward-modal" class="modal-overlay">
-        <div class="modal-content gold-result">
-            <h2>Rezultatul Trade Up-ului:</h2>
-            <div id="reward-item" class="item-display">
-                </div>
-            <p id="reward-name">Recompensă: Nume Către Fi Inserat</p>
-            <button id="close-modal-btn">Închide și Continuă</button>
-        </div>
-    </div>
-
     <div id="spin-container">
         <h2>💰 Obține un Skin (Mini-Ruletă)</h2>
         <button id="spin-button">SPIN! (Cost: 1 Item)</button>
@@ -108,76 +98,15 @@
         </div>
         
         <div id="roulette-marker"></div> </div>
-    ```
-
-### B. 🎨 Modificări `style.css`
-
-Acest CSS va crea zona ruletei, va ascunde conținutul excesiv și va adăuga linia centrală.
-
-**Adaugă acest cod la sfârșitul fișierului tău `style.css`:**
-
-```css
-/* --- Stiluri pentru Zona de Spin (Mini-Ruletă) --- */
-
-#spin-container {
-    margin: 50px auto;
-    padding: 20px;
-    border-top: 1px solid #333;
-    max-width: 900px;
-}
-
-#spin-button {
-    padding: 10px 30px;
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #2a73cc; /* Albastru pentru contrast */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-    margin-bottom: 20px;
-}
-
-#spin-button:hover:not(:disabled) {
-    background-color: #3b82f6;
-}
-
-#spin-button:disabled {
-    background-color: #555;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-#roulette-track-container {
-    position: relative;
-    width: 800px; /* Lățimea vizibilă a ruletului */
-    height: 120px;
-    margin: 20px auto;
-    overflow: hidden; /* CRITIC: Ascunde itemele din afara chenarului */
-    border: 3px solid #555;
-    border-radius: 8px;
-    background-color: #111;
-}
-
-#roulette-track {
-    display: flex;
-    position: absolute; /* Permite mișcarea stânga-dreapta */
-    left: 0;
-    transition: transform 5s cubic-bezier(0.2, 0.8, 0.5, 1); /* Animație lina */
-}
-
-/* Markerul central */
-#roulette-marker {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3px;
-    height: 100%;
-    background-color: #ffd700; /* Linia de oprire galbenă */
-    z-index: 10;
-}
+    <div id="reward-modal" class="modal-overlay">
+        <div class="modal-content gold-result">
+            <h2>Rezultatul:</h2>
+            <div id="reward-item" class="item-display">
+                </div>
+            <p id="reward-name">Recompensă: Nume Către Fi Inserat</p>
+            <button id="close-modal-btn">Închide și Continuă</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
-
