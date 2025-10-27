@@ -34,7 +34,18 @@ function renderSelectedItems() {
                 const itemClone = originalItem.cloneNode(true);
                 itemClone.classList.remove('selected'); // Nu vrem clasa de selecție pe clonă
                 itemClone.classList.add('in-slot'); // Clasă pentru stilizare specifică slotului
-                itemClone.onclick = () => deselectItem(selectedItems[i]); // Adaugă funcția de deselectare
+                
+                // Păstrăm funcția de deselectare pe clonă
+                itemClone.onclick = () => deselectItem(selectedItems[i]); 
+                
+                // Asigurăm că imaginea se vede pe clonă
+                const nameOverlay = itemClone.querySelector('.item-name-overlay');
+                if(nameOverlay) {
+                    nameOverlay.style.opacity = '1'; // Facem numele vizibil în slot
+                    nameOverlay.style.fontSize = '12px';
+                    nameOverlay.style.pointerEvents = 'auto'; 
+                }
+
                 slot.appendChild(itemClone);
             }
         } else {
@@ -127,17 +138,16 @@ function runTradeUp() {
 // Adaugă event listener la butonul de Trade Up
 tradeUpButton.addEventListener('click', runTradeUp);
 
-// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (MODIFICAT) ---
-
-f// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (CORECTAT PENTRU IMAGINI) ---
+// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (CORECTAT) ---
 
 function initializeSimulator() {
     // Adaugă event listener la toate itemele din inventar
     inventoryItems.querySelectorAll('.item').forEach(item => {
         
-        // --- !!! ATENȚIE: AM ELIMINAT LINIA CARE ADĂUGA TEXTUL (itemName) ÎN INTERIORUL ITEMULUI.
-        // --- Imaginea (din CSS) nu se vedea din cauza textului (din JS).
-        
+        // Re-introducem textul (îl facem invizibil prin CSS, dar păstrăm zona de click)
+        const itemName = item.dataset.name;
+        item.innerHTML = `<span class="item-name-overlay">${itemName}</span>`; 
+
         // Adaugă event listener
         item.addEventListener('click', () => selectItem(item));
     });
@@ -147,11 +157,3 @@ function initializeSimulator() {
 }
 
 initializeSimulator();
-    });
-
-    updateTradeUpButton();
-    renderSelectedItems();
-}
-
-
-initializeSimulator(); // Apelez noua funcție de inițializare
