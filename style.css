@@ -54,7 +54,6 @@ h2 {
     border: 3px dashed #555;
     background-color: #2e2e2e;
     color: #888;
-    content: 'Așteaptă Item'; /* Nu funcționează direct pe div, dar îl vom folosi ca placeholder vizual */
 }
 
 /* --- Stiluri pentru Buton --- */
@@ -102,7 +101,6 @@ h2 {
 
 /* Stil pentru animația de rulare a cutiilor (Roll Animation) */
 .roll-animation {
-    /* Va fi stilizat mai târziu cu JS */
     font-size: 36px;
     color: #ffd700;
     animation: pulse 1s infinite alternate;
@@ -155,10 +153,11 @@ h2 {
     text-align: center;
 }
 
-/* Culoarea Roșie (Covert) */
+/* Culoarea Roșie (Covert) - SETĂRI GENERALE */
 .covert {
     border-color: #e54c4c; /* Roșu */
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('item-background.jpg'); /* Presupunem o imagine de fundal */
+    background-color: #3e3e3e;
+    background-image: none; /* IMPORTANT: Eliminăm fundalul generic */
 }
 
 /* Feedback vizual la selectare */
@@ -189,3 +188,11 @@ h2 {
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+
+/* --- SETĂRI IMAGINI SKIN-URI --- */
+/* AWP Asiimov */
+.item[data-name*="Asiimov"] {
+    background-image: url('awp_asiimov.png');
+    background-size: cover;
+}
+/* AICI VOR VENI CELELALTE SKIN-URI */
