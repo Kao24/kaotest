@@ -186,7 +186,7 @@ h2 {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* NOU: CLASA PENTRU A ASCUNDE TEXTUL ȘI A PĂSTRA ZONA DE CLICK (SETATĂ ÎN JS) */
+/* CLASA PENTRU A ASCUNDE TEXTUL ȘI A PĂSTRA ZONA DE CLICK */
 .item-name-overlay {
     opacity: 0.01;
     pointer-events: none;
@@ -200,7 +200,6 @@ h2 {
 
 
 /* --- SETĂRI IMAGINI SKIN-URI (COVERT) --- */
-/* NOTĂ: Trebuie să încarci fișierele .png pe GitHub cu numele specificate AICI. */
 
 /* PISTOALE & PUȘTI */
 .item[data-name*="Asiimov"] { background-image: url('awp_asiimov.png'); background-size: cover; }
@@ -253,3 +252,78 @@ h2 {
 .item[data-name*="Conspiracy"] { background-image: url('deagle_conspiracy.png'); background-size: cover; }
 .item[data-name*="Weasel"] { background-image: url('glock18_weasel.png'); background-size: cover; }
 .item[data-name*="Chromatic Aberration"] { background-image: url('awp_chromatic_aberration.png'); background-size: cover; }
+
+
+/* --- Stiluri pentru Pop-up-ul de Recompensă (Modal) --- */
+
+/* Fundalul care acoperă tot ecranul */
+.modal-overlay {
+    display: none; /* Ascuns inițial */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+/* Conținutul vizibil al pop-up-ului */
+.modal-content {
+    background-color: #2e2817;
+    margin: 15% auto;
+    padding: 30px;
+    border: 5px solid #ffd700;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+    animation: modal-entry 0.3s ease-out;
+}
+
+@keyframes modal-entry {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Stil pentru afișarea itemului în interiorul pop-up-ului (NOU) */
+#reward-item.item-display {
+    width: 250px;
+    height: 180px;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 5px solid #ffd700;
+    
+    /* Proprietăți esențiale pentru afișarea imaginii de fundal: */
+    background-size: cover;
+    background-position: center;
+    
+    box-shadow: 0 0 20px #ffd700;
+}
+
+/* Numele recompensei */
+#reward-name {
+    font-size: 24px;
+    color: #ffd700;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Butonul de închidere */
+#close-modal-btn {
+    padding: 10px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #ffd700;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+#close-modal-btn:hover {
+    background-color: #e5c100;
+}
