@@ -2,12 +2,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     padding: 20px;
-    background-color: #1a1a1a; /* Fundal foarte închis */
+    background-color: #1a1a1a;
     color: white;
 }
 
 h1 {
-    color: #ffd700; /* Galben auriu pentru titlu */
+    color: #ffd700;
     margin-bottom: 5px;
 }
 
@@ -34,7 +34,7 @@ h2 {
 #selected-items-slots {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Spațiere între sloturi */
+    gap: 15px;
     margin-top: 20px;
 }
 
@@ -62,7 +62,7 @@ h2 {
     padding: 15px 40px;
     font-size: 24px;
     cursor: pointer;
-    background-color: #a93d3d; /* Roșu închis pentru acțiune */
+    background-color: #a93d3d;
     color: white;
     border: none;
     border-radius: 5px;
@@ -99,7 +99,6 @@ h2 {
     color: #eee;
 }
 
-/* Stil pentru animația de rulare a cutiilor (Roll Animation) */
 .roll-animation {
     font-size: 36px;
     color: #ffd700;
@@ -109,7 +108,6 @@ h2 {
     from { opacity: 0.6; }
     to { opacity: 1; }
 }
-
 
 /* --- Stiluri pentru Inventar și Item-uri --- */
 
@@ -142,7 +140,7 @@ h2 {
     transition: all 0.2s;
     background-size: cover;
     background-position: center;
-    background-color: #3e3e3e; /* Culoare de fundal standard */
+    background-color: #3e3e3e;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
@@ -154,15 +152,15 @@ h2 {
 
 /* Culoarea Roșie (Covert) - SETĂRI GENERALE */
 .covert {
-    border-color: #e54c4c; /* Roșu */
+    border-color: #e54c4c;
     background-color: #3e3e3e;
-    background-image: none; /* Eliminăm fundalul generic */
+    background-image: none;
 }
 
 /* Feedback vizual la selectare */
 .item.selected {
     transform: scale(1.05);
-    border-color: #ffd700; /* Se evidențiază cu galben/auriu când este selectat */
+    border-color: #ffd700;
     box-shadow: 0 0 15px #ffd700;
     opacity: 0.8;
 }
@@ -175,7 +173,7 @@ h2 {
 /* Stil pentru itemele Galbene/Aurii (Rezultat) */
 .gold-result {
     font-size: 28px;
-    color: #ffd700; /* Aur */
+    color: #ffd700;
     border: 4px solid #ffd700;
     padding: 15px;
     background-color: #2e2817;
@@ -188,22 +186,70 @@ h2 {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* --- NOU: CLASA PENTRU A ASCUNDE TEXTUL ȘI A PĂSTRA ZONA DE CLICK --- */
+/* NOU: CLASA PENTRU A ASCUNDE TEXTUL ȘI A PĂSTRA ZONA DE CLICK (SETATĂ ÎN JS) */
 .item-name-overlay {
-    opacity: 0.01; /* Textul rămâne, dar este aproape invizibil */
-    pointer-events: none; /* Nu interferează cu click-ul */
-    font-size: 0; /* Textul e de dimensiune zero */
+    opacity: 0.01;
+    pointer-events: none;
+    font-size: 0;
     width: 100%;
     height: 100%;
-    display: flex; /* Pentru a umple zona */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* --- SETĂRI IMAGINI SKIN-URI --- */
-/* AWP Asiimov (Imaginea ta) */
-.item[data-name*="Asiimov"] {
-    background-image: url('awp_asiimov.png');
-    background-size: cover;
-}
-/* Aici poți adăuga celelalte 4 skin-uri */
+
+/* --- SETĂRI IMAGINI SKIN-URI (COVERT) --- */
+/* NOTĂ: Trebuie să încarci fișierele .png pe GitHub cu numele specificate AICI. */
+
+/* PISTOALE & PUȘTI */
+.item[data-name*="Asiimov"] { background-image: url('awp_asiimov.png'); background-size: cover; }
+.item[data-name*="Redline"] { background-image: url('ak47_redline.png'); background-size: cover; }
+.item[data-name*="Neo-Noir"] { background-image: url('m4a4_neonoir.png'); background-size: cover; }
+.item[data-name*="Blaze"] { background-image: url('deagle_blaze.png'); background-size: cover; }
+.item[data-name*="Fade"] { background-image: url('glock18_fade.png'); background-size: cover; }
+.item[data-name*="Hellfire"] { background-image: url('m4a4_hellfire.png'); background-size: cover; }
+.item[data-name*="Bloodsport"] { background-image: url('ak47_bloodsport.png'); background-size: cover; }
+.item[data-name*="Wildfire"] { background-image: url('awp_wildfire.png'); background-size: cover; }
+.item[data-name*="Kill Confirmed"] { background-image: url('usps_killconfirmed.png'); background-size: cover; }
+.item[data-name*="Golden Coil"] { background-image: url('m4a1s_golden_coil.png'); background-size: cover; }
+.item[data-name*="Aquamarine Revenge"] { background-image: url('ak47_aquamarine_revenge.png'); background-size: cover; }
+.item[data-name*="The Emperor"] { background-image: url('m4a4_the_emperor.png'); background-size: cover; }
+.item[data-name*="Sunset Storm"] { background-image: url('deagle_sunset_storm.png'); background-size: cover; }
+.item[data-name*="Water Elemental"] { background-image: url('glock18_water_elemental.png'); background-size: cover; }
+.item[data-name*="Lightning Strike"] { background-image: url('awp_lightning_strike.png'); background-size: cover; }
+.item[data-name*="Fuel Injector"] { background-image: url('ak47_fuel_injector.png'); background-size: cover; }
+.item[data-name*="Temukau"] { background-image: url('m4a4_temukau.png'); background-size: cover; }
+.item[data-name*="Cobalt Disruption"] { background-image: url('deagle_cobalt_disruption.png'); background-size: cover; }
+.item[data-name*="Synth Leaf"] { background-image: url('glock18_synth_leaf.png'); background-size: cover; }
+.item[data-name*="Containment Breach"] { background-image: url('awp_containment_breach.png'); background-size: cover; }
+.item[data-name*="Frontside Misty"] { background-image: url('ak47_frontside_misty.png'); background-size: cover; }
+.item[data-name*="Nightmare"] { background-image: url('m4a1s_nightmare.png'); background-size: cover; }
+.item[data-name*="Kumicho Dragon"] { background-image: url('deagle_kumicho_dragon.png'); background-size: cover; }
+.item[data-name*="Royal Legion"] { background-image: url('glock18_royal_legion.png'); background-size: cover; }
+.item[data-name*="Gungnir"] { background-image: url('awp_gungnir.png'); background-size: cover; }
+.item[data-name*="Fire Serpent"] { background-image: url('ak47_fire_serpent.png'); background-size: cover; }
+.item[data-name*="Howl"] { background-image: url('m4a4_howl.png'); background-size: cover; }
+.item[data-name*="Fennec Fox"] { background-image: url('deagle_fennec_fox.png'); background-size: cover; }
+.item[data-name*="Reactor"] { background-image: url('glock18_reactor.png'); background-size: cover; }
+.item[data-name*="Fade"] { background-image: url('awp_fade.png'); background-size: cover; }
+.item[data-name*="Case Hardened"] { background-image: url('ak47_case_hardened.png'); background-size: cover; }
+.item[data-name*="Poseidon"] { background-image: url('m4a4_poseidon.png'); background-size: cover; }
+.item[data-name*="Printstream"] { background-image: url('deagle_printstream.png'); background-size: cover; }
+.item[data-name*="Gamma Doppler"] { background-image: url('glock18_gamma_doppler.png'); background-size: cover; }
+.item[data-name*="Dragon Lore"] { background-image: url('awp_dragon_lore.png'); background-size: cover; }
+.item[data-name*="Hydroponic"] { background-image: url('ak47_hydroponic.png'); background-size: cover; }
+.item[data-name*="Printstream"] { background-image: url('m4a1s_printstream.png'); background-size: cover; }
+.item[data-name*="Mecha Industries"] { background-image: url('deagle_mecha_industries.png'); background-size: cover; }
+.item[data-name*="Candy Apple"] { background-image: url('glock18_candy_apple.png'); background-size: cover; }
+.item[data-name*="Medusa"] { background-image: url('awp_medusa.png'); background-size: cover; }
+.item[data-name*="Vulcan"] { background-image: url('ak47_vulcan.png'); background-size: cover; }
+.item[data-name*="Buzz Kill"] { background-image: url('m4a4_buzz_kill.png'); background-size: cover; }
+.item[data-name*="Code Red"] { background-image: url('deagle_code_red.png'); background-size: cover; }
+.item[data-name*="Off World"] { background-image: url('glock18_off_world.png'); background-size: cover; }
+.item[data-name*="Hyper Beast"] { background-image: url('awp_hyper_beast.png'); background-size: cover; }
+.item[data-name*="Neon Rider"] { background-image: url('ak47_neon_rider.png'); background-size: cover; }
+.item[data-name*="Desolate Space"] { background-image: url('m4a4_desolate_space.png'); background-size: cover; }
+.item[data-name*="Conspiracy"] { background-image: url('deagle_conspiracy.png'); background-size: cover; }
+.item[data-name*="Weasel"] { background-image: url('glock18_weasel.png'); background-size: cover; }
+.item[data-name*="Chromatic Aberration"] { background-image: url('awp_chromatic_aberration.png'); background-size: cover; }
