@@ -142,7 +142,7 @@ h2 {
     background-position: center;
     background-color: #3e3e3e;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    position: relative;
+    position: relative; /* Esențial pentru .count-overlay */
     overflow: hidden;
     
     padding: 5px;
@@ -155,6 +155,25 @@ h2 {
     border-color: #e54c4c;
     background-color: #3e3e3e;
     background-image: none;
+}
+
+/* Stil pentru contorul de iteme (Stacking) */
+.count-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px 0 0 0;
+    z-index: 5;
+    display: none;
+}
+
+/* Afișează-l doar când count-ul este mai mare decât 1 */
+.item[data-count]:not([data-count="1"]) .count-overlay {
+    display: block;
 }
 
 /* Feedback vizual la selectare */
@@ -200,8 +219,8 @@ h2 {
 
 
 /* --- SETĂRI IMAGINI SKIN-URI (COVERT) --- */
+/* (Acestea rămân la fel pentru a funcționa cu logica din script.js) */
 
-/* PISTOALE & PUȘTI */
 .item[data-name*="Asiimov"] { background-image: url('awp_asiimov.png'); background-size: cover; }
 .item[data-name*="Redline"] { background-image: url('ak47_redline.png'); background-size: cover; }
 .item[data-name*="Neo-Noir"] { background-image: url('m4a4_neonoir.png'); background-size: cover; }
@@ -248,7 +267,7 @@ h2 {
 .item[data-name*="Off World"] { background-image: url('glock18_off_world.png'); background-size: cover; }
 .item[data-name*="Hyper Beast"] { background-image: url('awp_hyper_beast.png'); background-size: cover; }
 .item[data-name*="Neon Rider"] { background-image: url('ak47_neon_rider.png'); background-size: cover; }
-.item[data-name*="Desolate Space"] { background-image: url('m4a4_desolate_space.png'); background-size: cover; }
+    .item[data-name*="Desolate Space"] { background-image: url('m4a4_desolate_space.png'); background-size: cover; }
 .item[data-name*="Conspiracy"] { background-image: url('deagle_conspiracy.png'); background-size: cover; }
 .item[data-name*="Weasel"] { background-image: url('glock18_weasel.png'); background-size: cover; }
 .item[data-name*="Chromatic Aberration"] { background-image: url('awp_chromatic_aberration.png'); background-size: cover; }
@@ -332,7 +351,7 @@ h2 {
     padding: 10px 30px;
     font-size: 20px;
     cursor: pointer;
-    background-color: #2a73cc; /* Albastru pentru contrast */
+    background-color: #2a73cc; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -352,28 +371,31 @@ h2 {
 
 #roulette-track-container {
     position: relative;
-    /* NOU: Folosește lățimea maximă a containerului părinte */
-    width: 100%; 
+    width: 100%; /* CORECTAT */
     height: 120px;
     margin: 20px auto;
     overflow: hidden; 
     border: 3px solid #555;
     border-radius: 8px;
     background-color: #111;
-    /* NOU: Limitează lățimea containerului spin-container, nu a track-ului */
-    max-width: 800px; 
+    max-width: 800px; /* CORECTAT: Limitează lățimea vizibilă */
 }
 
-/* Modifică și markerul pentru a fi centrat relativ la container */
+#roulette-track {
+    display: flex;
+    position: absolute;
+    left: 0;
+    /* Tranziția este setată din JS pentru control dinamic */
+}
+
+/* Markerul central */
 #roulette-marker {
     position: absolute;
     top: 0;
-    /* NOU: Calculează centrul relativ la containerul track-ului */
-    left: 50%; 
+    left: 50%; /* CORECTAT: Centrat relativ la container */
     transform: translateX(-50%);
     width: 3px;
     height: 100%;
-    background-color: #ffd700; 
+    background-color: #ffd700;
     z-index: 10;
 }
-
