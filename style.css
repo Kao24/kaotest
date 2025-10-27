@@ -1,0 +1,191 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a; /* Fundal foarte închis */
+    color: white;
+}
+
+h1 {
+    color: #ffd700; /* Galben auriu pentru titlu */
+    margin-bottom: 5px;
+}
+
+p {
+    color: #bbb;
+}
+
+h2 {
+    color: #ccc;
+    font-size: 20px;
+}
+
+/* --- Stiluri pentru Zona de Trade Up --- */
+
+#trade-up-zone {
+    margin: 30px auto;
+    padding: 20px;
+    border: 3px solid #333;
+    background-color: #222;
+    border-radius: 12px;
+    max-width: 800px;
+}
+
+#selected-items-slots {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Spațiere între sloturi */
+    margin-top: 20px;
+}
+
+.slot {
+    width: 120px;
+    height: 100px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.empty-slot {
+    border: 3px dashed #555;
+    background-color: #2e2e2e;
+    color: #888;
+    content: 'Așteaptă Item'; /* Nu funcționează direct pe div, dar îl vom folosi ca placeholder vizual */
+}
+
+/* --- Stiluri pentru Buton --- */
+
+#executa-trade-up {
+    padding: 15px 40px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #a93d3d; /* Roșu închis pentru acțiune */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 30px 0;
+    transition: background-color 0.2s;
+}
+
+#executa-trade-up:hover:not(:disabled) {
+    background-color: #c04848;
+}
+
+#executa-trade-up:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- Stiluri pentru Rezultat și Animație --- */
+
+#rezultat-container {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px dashed #555;
+    background-color: #1e2124;
+    border-radius: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#rezultat-text {
+    font-size: 20px;
+    min-height: 50px;
+    color: #eee;
+}
+
+/* Stil pentru animația de rulare a cutiilor (Roll Animation) */
+.roll-animation {
+    /* Va fi stilizat mai târziu cu JS */
+    font-size: 36px;
+    color: #ffd700;
+    animation: pulse 1s infinite alternate;
+}
+@keyframes pulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+
+/* --- Stiluri pentru Inventar și Item-uri --- */
+
+#inventory-container {
+    margin-top: 50px;
+    padding: 20px;
+    border-top: 1px solid #333;
+}
+
+#inventory-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.item {
+    width: 120px;
+    height: 100px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    border: 3px solid transparent;
+    transition: all 0.2s;
+    background-size: cover;
+    background-position: center;
+    background-color: #3e3e3e; /* Culoare de fundal standard */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    
+    /* Adăugăm numele pe itemele din inventar (vizibil pe hover) */
+    padding: 5px;
+    text-shadow: 1px 1px 2px #000;
+    text-align: center;
+}
+
+/* Culoarea Roșie (Covert) */
+.covert {
+    border-color: #e54c4c; /* Roșu */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('item-background.jpg'); /* Presupunem o imagine de fundal */
+}
+
+/* Feedback vizual la selectare */
+.item.selected {
+    transform: scale(1.05);
+    border-color: #ffd700; /* Se evidențiază cu galben/auriu când este selectat */
+    box-shadow: 0 0 15px #ffd700;
+    opacity: 0.8;
+}
+
+.item:hover:not(.selected) {
+    opacity: 0.9;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Stil pentru itemele Galbene/Aurii (Rezultat) */
+.gold-result {
+    font-size: 28px;
+    color: #ffd700; /* Aur */
+    border: 4px solid #ffd700;
+    padding: 15px;
+    background-color: #2e2817;
+    border-radius: 8px;
+    animation: result-glow 0.8s ease-out;
+}
+
+@keyframes result-glow {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}

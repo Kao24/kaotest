@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulator Trade Up CS2 Avansat</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <h1>🔪 Simulator Trade Up (5 Roșii -> Galben) 🧤</h1>
+    <p>Selectează exact 5 iteme roșii (Covert) din inventar pentru a începe.</p>
+
+    <div id="trade-up-zone">
+        <h2>Zona de Trade Up (5/5 Item-uri)</h2>
+        <div id="selected-items-slots">
+            <div class="slot empty-slot"></div>
+            <div class="slot empty-slot"></div>
+            <div class="slot empty-slot"></div>
+            <div class="slot empty-slot"></div>
+            <div class="slot empty-slot"></div>
+        </div>
+    </div>
+    
+    <button id="executa-trade-up" disabled>Execută Trade Up</button>
+
+    <div id="rezultat-container">
+        <h2>Rezultat:</h2>
+        <div id="animation-placeholder">
+            <p id="rezultat-text">Selectează itemele roșii pentru a începe!</p>
+        </div>
+    </div>
+
+    <hr>
+    
+    <div id="inventory-container">
+        <h2>Inventarul tău (Iteme Roșii - Covert)</h2>
+        <div id="inventory-items">
+    <div class="item covert" data-name="AWP | Asiimov" data-id="1"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="2"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="3"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="4"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="5"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="6"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="7"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="8"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="9"></div>
+    <div class="item covert" data-name="AWP | Asiimov" data-id="10"></div>
+    
+    <div class="item covert" data-name="AWP | Asiimov" data-id="11"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="12"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="13"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="14"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="15"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="16"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="17"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="18"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="19"></div>
+    <div class="item covert" data-name="AWP | Asiimov" data-id="20"></div>
+
+    <div class="item covert" data-name="AWP | Asiimov" data-id="21"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="22"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="23"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="24"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="25"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="26"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="27"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="28"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="29"></div>
+    <div class="item covert" data-name="AWP | Asiimov" data-id="30"></div>
+
+    <div class="item covert" data-name="AWP | Asiimov" data-id="31"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="32"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="33"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="34"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="35"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="36"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="37"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="38"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="39"></div>
+    <div class="item covert" data-name="AWP | Asiimov" data-id="40"></div>
+
+    <div class="item covert" data-name="AWP | Asiimov" data-id="41"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="42"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="43"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="44"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="45"></div>
+    <div class="item covert" data-name="AK-47 | Redline" data-id="46"></div>
+    <div class="item covert" data-name="M4A4 | Neo-Noir" data-id="47"></div>
+    <div class="item covert" data-name="Desert Eagle | Blaze" data-id="48"></div>
+    <div class="item covert" data-name="Glock-18 | Fade" data-id="49"></div>
+    <div class="item covert" data-name="AWP | Asiimov" data-id="50"></div>
+</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
