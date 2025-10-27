@@ -41,7 +41,8 @@ function renderSelectedItems() {
                 // Asigurăm că imaginea se vede pe clonă
                 const nameOverlay = itemClone.querySelector('.item-name-overlay');
                 if(nameOverlay) {
-                    nameOverlay.style.opacity = '1'; // Facem numele vizibil în slot
+                    // În slot, facem numele vizibil ca text de control
+                    nameOverlay.style.opacity = '1'; 
                     nameOverlay.style.fontSize = '12px';
                     nameOverlay.style.pointerEvents = 'auto'; 
                 }
@@ -138,13 +139,14 @@ function runTradeUp() {
 // Adaugă event listener la butonul de Trade Up
 tradeUpButton.addEventListener('click', runTradeUp);
 
-// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (CORECTAT) ---
+// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (CORECTAT PENTRU IMAGINI ȘI SELECTARE) ---
 
 function initializeSimulator() {
     // Adaugă event listener la toate itemele din inventar
     inventoryItems.querySelectorAll('.item').forEach(item => {
         
-        // Re-introducem textul (îl facem invizibil prin CSS, dar păstrăm zona de click)
+        // RE-ADĂUGĂM NUMELE ÎN HTML PENTRU A MENȚINE ZONA DE CLICK ACTIVĂ
+        // Textul va fi ascuns prin clasa CSS 'item-name-overlay'
         const itemName = item.dataset.name;
         item.innerHTML = `<span class="item-name-overlay">${itemName}</span>`; 
 
