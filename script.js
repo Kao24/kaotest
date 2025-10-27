@@ -5,6 +5,12 @@ const selectedSlots = document.getElementById('selected-items-slots').children;
 const rezultatText = document.getElementById('rezultat-text');
 const animationPlaceholder = document.getElementById('animation-placeholder');
 
+// Variabile NOU pentru Pop-up (ASIGURĂ-TE CĂ SUNT LA ÎNCEPUTUL FIȘIERULUI!)
+const rewardModal = document.getElementById('reward-modal');
+const rewardItemDisplay = document.getElementById('reward-item');
+const rewardNameDisplay = document.getElementById('reward-name');
+const closeModalBtn = document.getElementById('close-modal-btn');
+
 let selectedItems = []; // Array pentru itemele din zona de trade-up
 const requiredItems = 5;
 
@@ -94,9 +100,9 @@ function deselectItem(itemId) {
 }
 
 
-// --- 2. LOGICA DE TRADE UP ȘI ANIMAȚIE ---
+// --- 2. LOGICA DE TRADE UP ȘI ANIMAȚIE (NOU PENTRU POP-UP) ---
 
-// Funcție pentru a rula animația și a afișa rezultatul
+// Funcție pentru a rula Trade Up-ul și a afișa recompensa
 function runTradeUp() {
     if (selectedItems.length !== requiredItems) return;
 
@@ -110,7 +116,7 @@ function runTradeUp() {
         }
     });
 
-    // 2. Golește sloturile de selecție și array-ul
+    // 2. Golește sloturile și array-ul
     selectedItems = [];
     renderSelectedItems();
 
@@ -120,33 +126,53 @@ function runTradeUp() {
     
     // Alege un rezultat aleatoriu garantat (100% Cutit/Manusa)
     const finalResult = goldResults[Math.floor(Math.random() * goldResults.length)];
-
+    
+    // Creează numele fișierului imagine (înlocuiește spațiile/barele cu underscore și trece la litere mici)
+    const imageName = finalResult.toLowerCase().replace(/[^a-z0-9]+/g, '_') + '.png';
+    
     // Setează un timeout pentru a simula durata animației
     setTimeout(() => {
-        // 4. Afișează rezultatul final
-        animationPlaceholder.innerHTML = `
-            <div class="gold-result">
-                🎉 **FELICITĂRI!** 🎉
-                <p>Ai primit:</p>
-                <p><strong>${finalResult}</strong></p>
-                <p>Simulare 100% succes!</p>
-            </div>
-        `;
+        // 4. Afișează rezultatul în pop-up
+        
+        // Curățăm vechiul rezultat de animație
+        animationPlaceholder.innerHTML = ''; 
+        rezultatText.textContent = 'Trade Up finalizat!';
+
+        // Setează imaginea și numele în pop-up
+        rewardItemDisplay.style.backgroundImage = `url('${imageName}')`;
+        rewardNameDisplay.textContent = `Recompensă: ${finalResult}`;
+
+        // Deschide pop-up-ul
+        rewardModal.style.display = 'block';
+
         tradeUpButton.disabled = false; // Permite un nou Trade Up
     }, 3000); // 3 secunde pentru animație
 }
 
-// Adaugă event listener la butonul de Trade Up
-tradeUpButton.addEventListener('click', runTradeUp);
+// Funcție pentru a închide pop-up-ul
+function closeModal() {
+    rewardModal.style.display = 'none';
+    // Opțional: resetează stilul imaginii (nu este strict necesar, dar e curat)
+    rewardItemDisplay.style.backgroundImage = '';
+}
 
-// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (CORECTAT PENTRU IMAGINI ȘI SELECTARE) ---
+// --- 3. INIȚIALIZARE ȘI EVENT LISTENERS ---
+
+// Adaugă event listeners la butonul de Trade Up și la pop-up
+tradeUpButton.addEventListener('click', runTradeUp);
+closeModalBtn.addEventListener('click', closeModal); 
+// Permite închiderea la click pe fundalul întunecat
+rewardModal.addEventListener('click', (e) => {
+    if (e.target === rewardModal) {
+        closeModal();
+    }
+});
 
 function initializeSimulator() {
     // Adaugă event listener la toate itemele din inventar
     inventoryItems.querySelectorAll('.item').forEach(item => {
         
         // RE-ADĂUGĂM NUMELE ÎN HTML PENTRU A MENȚINE ZONA DE CLICK ACTIVĂ
-        // Textul va fi ascuns prin clasa CSS 'item-name-overlay'
         const itemName = item.dataset.name;
         item.innerHTML = `<span class="item-name-overlay">${itemName}</span>`; 
 
