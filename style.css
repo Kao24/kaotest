@@ -147,7 +147,6 @@ h2 {
     position: relative;
     overflow: hidden;
     
-    /* Adăugăm numele pe itemele din inventar (vizibil pe hover) */
     padding: 5px;
     text-shadow: 1px 1px 2px #000;
     text-align: center;
@@ -157,7 +156,7 @@ h2 {
 .covert {
     border-color: #e54c4c; /* Roșu */
     background-color: #3e3e3e;
-    background-image: none; /* IMPORTANT: Eliminăm fundalul generic */
+    background-image: none; /* Eliminăm fundalul generic */
 }
 
 /* Feedback vizual la selectare */
@@ -189,10 +188,22 @@ h2 {
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* --- NOU: CLASA PENTRU A ASCUNDE TEXTUL ȘI A PĂSTRA ZONA DE CLICK --- */
+.item-name-overlay {
+    opacity: 0.01; /* Textul rămâne, dar este aproape invizibil */
+    pointer-events: none; /* Nu interferează cu click-ul */
+    font-size: 0; /* Textul e de dimensiune zero */
+    width: 100%;
+    height: 100%;
+    display: flex; /* Pentru a umple zona */
+    align-items: center;
+    justify-content: center;
+}
+
 /* --- SETĂRI IMAGINI SKIN-URI --- */
-/* AWP Asiimov */
+/* AWP Asiimov (Imaginea ta) */
 .item[data-name*="Asiimov"] {
     background-image: url('awp_asiimov.png');
     background-size: cover;
 }
-/* AICI VOR VENI CELELALTE SKIN-URI */
+/* Aici poți adăuga celelalte 4 skin-uri */
