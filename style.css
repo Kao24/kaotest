@@ -56,7 +56,7 @@ h2 {
     color: #888;
 }
 
-/* --- Stiluri pentru Buton --- */
+/* --- Stiluri pentru Butoane --- */
 
 #executa-trade-up {
     padding: 15px 40px;
@@ -206,7 +206,7 @@ h2 {
 .item[data-name*="Redline"] { background-image: url('ak47_redline.png'); background-size: cover; }
 .item[data-name*="Neo-Noir"] { background-image: url('m4a4_neonoir.png'); background-size: cover; }
 .item[data-name*="Blaze"] { background-image: url('deagle_blaze.png'); background-size: cover; }
-.item[data-name*="Fade"] { background-image: url('glock18_fade.png'); background-size: cover; }
+.item[data-name*="Glock-18 | Fade"] { background-image: url('glock18_fade.png'); background-size: cover; }
 .item[data-name*="Hellfire"] { background-image: url('m4a4_hellfire.png'); background-size: cover; }
 .item[data-name*="Bloodsport"] { background-image: url('ak47_bloodsport.png'); background-size: cover; }
 .item[data-name*="Wildfire"] { background-image: url('awp_wildfire.png'); background-size: cover; }
@@ -231,14 +231,14 @@ h2 {
 .item[data-name*="Howl"] { background-image: url('m4a4_howl.png'); background-size: cover; }
 .item[data-name*="Fennec Fox"] { background-image: url('deagle_fennec_fox.png'); background-size: cover; }
 .item[data-name*="Reactor"] { background-image: url('glock18_reactor.png'); background-size: cover; }
-.item[data-name*="Fade"] { background-image: url('awp_fade.png'); background-size: cover; }
+.item[data-name*="AWP | Fade"] { background-image: url('awp_fade.png'); background-size: cover; }
 .item[data-name*="Case Hardened"] { background-image: url('ak47_case_hardened.png'); background-size: cover; }
 .item[data-name*="Poseidon"] { background-image: url('m4a4_poseidon.png'); background-size: cover; }
 .item[data-name*="Printstream"] { background-image: url('deagle_printstream.png'); background-size: cover; }
 .item[data-name*="Gamma Doppler"] { background-image: url('glock18_gamma_doppler.png'); background-size: cover; }
 .item[data-name*="Dragon Lore"] { background-image: url('awp_dragon_lore.png'); background-size: cover; }
 .item[data-name*="Hydroponic"] { background-image: url('ak47_hydroponic.png'); background-size: cover; }
-.item[data-name*="Printstream"] { background-image: url('m4a1s_printstream.png'); background-size: cover; }
+.item[data-name*="M4A1-S | Printstream"] { background-image: url('m4a1s_printstream.png'); background-size: cover; }
 .item[data-name*="Mecha Industries"] { background-image: url('deagle_mecha_industries.png'); background-size: cover; }
 .item[data-name*="Candy Apple"] { background-image: url('glock18_candy_apple.png'); background-size: cover; }
 .item[data-name*="Medusa"] { background-image: url('awp_medusa.png'); background-size: cover; }
@@ -255,10 +255,8 @@ h2 {
 
 
 /* --- Stiluri pentru Pop-up-ul de Recompensă (Modal) --- */
-
-/* Fundalul care acoperă tot ecranul */
 .modal-overlay {
-    display: none; /* Ascuns inițial */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -270,7 +268,6 @@ h2 {
     backdrop-filter: blur(5px);
 }
 
-/* Conținutul vizibil al pop-up-ului */
 .modal-content {
     background-color: #2e2817;
     margin: 15% auto;
@@ -289,22 +286,17 @@ h2 {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Stil pentru afișarea itemului în interiorul pop-up-ului (NOU) */
 #reward-item.item-display {
     width: 250px;
     height: 180px;
     margin: 20px auto;
     border-radius: 10px;
     border: 5px solid #ffd700;
-    
-    /* Proprietăți esențiale pentru afișarea imaginii de fundal: */
     background-size: cover;
     background-position: center;
-    
     box-shadow: 0 0 20px #ffd700;
 }
 
-/* Numele recompensei */
 #reward-name {
     font-size: 24px;
     color: #ffd700;
@@ -312,7 +304,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Butonul de închidere */
 #close-modal-btn {
     padding: 10px 30px;
     font-size: 18px;
@@ -326,4 +317,65 @@ h2 {
 
 #close-modal-btn:hover {
     background-color: #e5c100;
+}
+
+/* --- Stiluri pentru Zona de Spin (Mini-Ruletă) --- */
+
+#spin-container {
+    margin: 50px auto;
+    padding: 20px;
+    border-top: 1px solid #333;
+    max-width: 900px;
+}
+
+#spin-button {
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #2a73cc; /* Albastru pentru contrast */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+    margin-bottom: 20px;
+}
+
+#spin-button:hover:not(:disabled) {
+    background-color: #3b82f6;
+}
+
+#spin-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#roulette-track-container {
+    position: relative;
+    width: 800px; /* Lățimea vizibilă a ruletului */
+    height: 120px;
+    margin: 20px auto;
+    overflow: hidden; /* CRITIC: Ascunde itemele din afara chenarului */
+    border: 3px solid #555;
+    border-radius: 8px;
+    background-color: #111;
+}
+
+#roulette-track {
+    display: flex;
+    position: absolute; /* Permite mișcarea stânga-dreapta */
+    left: 0;
+    /* Tranziția este setată din JS pentru control dinamic */
+}
+
+/* Markerul central */
+#roulette-marker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background-color: #ffd700; /* Linia de oprire galbenă */
+    z-index: 10;
 }
