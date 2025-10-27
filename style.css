@@ -352,30 +352,28 @@ h2 {
 
 #roulette-track-container {
     position: relative;
-    width: 800px; /* Lățimea vizibilă a ruletului */
+    /* NOU: Folosește lățimea maximă a containerului părinte */
+    width: 100%; 
     height: 120px;
     margin: 20px auto;
-    overflow: hidden; /* CRITIC: Ascunde itemele din afara chenarului */
+    overflow: hidden; 
     border: 3px solid #555;
     border-radius: 8px;
     background-color: #111;
+    /* NOU: Limitează lățimea containerului spin-container, nu a track-ului */
+    max-width: 800px; 
 }
 
-#roulette-track {
-    display: flex;
-    position: absolute; /* Permite mișcarea stânga-dreapta */
-    left: 0;
-    /* Tranziția este setată din JS pentru control dinamic */
-}
-
-/* Markerul central */
+/* Modifică și markerul pentru a fi centrat relativ la container */
 #roulette-marker {
     position: absolute;
     top: 0;
-    left: 50%;
+    /* NOU: Calculează centrul relativ la containerul track-ului */
+    left: 50%; 
     transform: translateX(-50%);
     width: 3px;
     height: 100%;
-    background-color: #ffd700; /* Linia de oprire galbenă */
+    background-color: #ffd700; 
     z-index: 10;
 }
+
