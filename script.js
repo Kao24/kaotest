@@ -5,7 +5,7 @@ const selectedSlots = document.getElementById('selected-items-slots').children;
 const rezultatText = document.getElementById('rezultat-text');
 const animationPlaceholder = document.getElementById('animation-placeholder');
 
-// Variabile NOU pentru Pop-up (ASIGURĂ-TE CĂ SUNT LA ÎNCEPUTUL FIȘIERULUI!)
+// Variabile NOU pentru Pop-up
 const rewardModal = document.getElementById('reward-modal');
 const rewardItemDisplay = document.getElementById('reward-item');
 const rewardNameDisplay = document.getElementById('reward-name');
@@ -14,13 +14,20 @@ const closeModalBtn = document.getElementById('close-modal-btn');
 let selectedItems = []; // Array pentru itemele din zona de trade-up
 const requiredItems = 5;
 
-// Lista de rezultate GALBENE (Cutite/Manusi) pentru simularea 100%
-const goldResults = [
-    "Cutit Karambit | Doppler", "Manusi Sport | Omega", "Cutit Bayonet | Gamma Doppler",
-    "Manusi Moto | Transport", "Cutit M9 Bayonet | Fade", "Manusi Driver | Lunar Weave"
-];
+// NOU: Obiect de mapare pentru a garanta că numele de fișier se potrivește
+const goldResultsMap = {
+    "Cutit Karambit | Doppler": "cutit_karambit_doppler.png",
+    "Manusi Sport | Omega": "manusi_sport_omega.png",
+    "Cutit Bayonet | Gamma Doppler": "cutit_bayonet_gamma_doppler.png",
+    "Manusi Moto | Transport": "manusi_moto_transport.png",
+    "Cutit M9 Bayonet | Fade": "cutit_m9_bayonet_fade.png",
+    "Manusi Driver | Lunar Weave": "manusi_driver_lunar_weave.png"
+};
 
-// --- 1. LOGICA DE SELECTARE A ITEMELOR ---
+// Array de chei pentru a alege un rezultat aleatoriu
+const goldResultNames = Object.keys(goldResultsMap);
+
+// --- 1. LOGICA DE SELECTARE A ITEMELOR (Rămâne neschimbată) ---
 
 // Funcție pentru a actualiza starea butonului de Trade Up
 function updateTradeUpButton() {
@@ -31,23 +38,19 @@ function updateTradeUpButton() {
 function renderSelectedItems() {
     for (let i = 0; i < selectedSlots.length; i++) {
         const slot = selectedSlots[i];
-        slot.innerHTML = ''; // Golește slotul
+        slot.innerHTML = ''; 
 
         if (i < selectedItems.length) {
-            // Dacă există un item selectat, copiază elementul și stilurile
             const originalItem = document.querySelector(`.item[data-id="${selectedItems[i]}"]`);
             if (originalItem) {
                 const itemClone = originalItem.cloneNode(true);
-                itemClone.classList.remove('selected'); // Nu vrem clasa de selecție pe clonă
-                itemClone.classList.add('in-slot'); // Clasă pentru stilizare specifică slotului
+                itemClone.classList.remove('selected');
+                itemClone.classList.add('in-slot');
                 
-                // Păstrăm funcția de deselectare pe clonă
                 itemClone.onclick = () => deselectItem(selectedItems[i]); 
                 
-                // Asigurăm că imaginea se vede pe clonă
                 const nameOverlay = itemClone.querySelector('.item-name-overlay');
                 if(nameOverlay) {
-                    // În slot, facem numele vizibil ca text de control
                     nameOverlay.style.opacity = '1'; 
                     nameOverlay.style.fontSize = '12px';
                     nameOverlay.style.pointerEvents = 'auto'; 
@@ -56,7 +59,6 @@ function renderSelectedItems() {
                 slot.appendChild(itemClone);
             }
         } else {
-            // Slot gol
             slot.classList.add('empty-slot');
         }
     }
@@ -66,7 +68,6 @@ function renderSelectedItems() {
 function selectItem(itemElement) {
     const itemId = itemElement.dataset.id;
     
-    // Verifică dacă itemul e deja selectat SAU dacă s-a atins limita
     if (itemElement.classList.contains('selected')) {
         deselectItem(itemId);
         return;
@@ -75,7 +76,7 @@ function selectItem(itemElement) {
     if (selectedItems.length < requiredItems) {
         selectedItems.push(itemId);
         itemElement.classList.add('selected');
-        itemElement.style.opacity = '0.5'; // Estompează itemul selectat din inventar
+        itemElement.style.opacity = '0.5';
         renderSelectedItems();
         updateTradeUpButton();
     } else {
@@ -85,10 +86,8 @@ function selectItem(itemElement) {
 
 // Funcție apelată la deselectarea unui item
 function deselectItem(itemId) {
-    // Scoate itemul din array-ul de selectate
     selectedItems = selectedItems.filter(id => id !== itemId);
     
-    // Elimină stilurile de selecție de pe itemul original din inventar
     const originalItem = document.querySelector(`.item[data-id="${itemId}"]`);
     if (originalItem) {
         originalItem.classList.remove('selected');
@@ -100,15 +99,14 @@ function deselectItem(itemId) {
 }
 
 
-// --- 2. LOGICA DE TRADE UP ȘI ANIMAȚIE (NOU PENTRU POP-UP) ---
+// --- 2. LOGICA DE TRADE UP ȘI ANIMAȚIE (ACTUALIZATĂ) ---
 
-// Funcție pentru a rula Trade Up-ul și a afișa recompensa
 function runTradeUp() {
     if (selectedItems.length !== requiredItems) return;
 
     tradeUpButton.disabled = true;
 
-    // 1. Elimină itemele folosite din DOM și din inventarul virtual
+    // 1. Elimină itemele folosite
     selectedItems.forEach(itemId => {
         const item = document.querySelector(`.item[data-id="${itemId}"]`);
         if (item) {
@@ -120,39 +118,37 @@ function runTradeUp() {
     selectedItems = [];
     renderSelectedItems();
 
-    // 3. Afișează animația de rulare (text simplu, dar stilizat)
+    // 3. Afișează animația
     animationPlaceholder.innerHTML = `<p id="rezultat-text" class="roll-animation">Trade Up în curs...</p>`;
     rezultatText.textContent = "Trade Up în curs...";
     
-    // Alege un rezultat aleatoriu garantat (100% Cutit/Manusa)
-    const finalResult = goldResults[Math.floor(Math.random() * goldResults.length)];
+    // NOU: Alege un nume de rezultat din chei
+    const finalResultName = goldResultNames[Math.floor(Math.random() * goldResultNames.length)];
     
-    // Creează numele fișierului imagine (înlocuiește spațiile/barele cu underscore și trece la litere mici)
-    const imageName = finalResult.toLowerCase().replace(/[^a-z0-9]+/g, '_') + '.png';
+    // NOU: Ia numele fișierului garantat din mapare
+    const imageName = goldResultsMap[finalResultName]; 
     
     // Setează un timeout pentru a simula durata animației
     setTimeout(() => {
         // 4. Afișează rezultatul în pop-up
         
-        // Curățăm vechiul rezultat de animație
         animationPlaceholder.innerHTML = ''; 
         rezultatText.textContent = 'Trade Up finalizat!';
 
         // Setează imaginea și numele în pop-up
         rewardItemDisplay.style.backgroundImage = `url('${imageName}')`;
-        rewardNameDisplay.textContent = `Recompensă: ${finalResult}`;
+        rewardNameDisplay.textContent = `Recompensă: ${finalResultName}`;
 
         // Deschide pop-up-ul
         rewardModal.style.display = 'block';
 
-        tradeUpButton.disabled = false; // Permite un nou Trade Up
+        tradeUpButton.disabled = false;
     }, 3000); // 3 secunde pentru animație
 }
 
 // Funcție pentru a închide pop-up-ul
 function closeModal() {
     rewardModal.style.display = 'none';
-    // Opțional: resetează stilul imaginii (nu este strict necesar, dar e curat)
     rewardItemDisplay.style.backgroundImage = '';
 }
 
