@@ -129,13 +129,14 @@ tradeUpButton.addEventListener('click', runTradeUp);
 
 // --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (MODIFICAT) ---
 
+f// --- INIȚIALIZARE LA ÎNCĂRCAREA PAGINII (CORECTAT PENTRU IMAGINI) ---
+
 function initializeSimulator() {
-    // Adaugă event listener și afișează numele itemului pe fiecare cutie
+    // Adaugă event listener la toate itemele din inventar
     inventoryItems.querySelectorAll('.item').forEach(item => {
-        // Obține numele itemului din atributul data-name
-        const itemName = item.dataset.name;
-        // Adaugă numele skin-ului în interiorul div-ului item
-        item.innerHTML = `<span>${itemName}</span>`; 
+        
+        // --- !!! ATENȚIE: AM ELIMINAT LINIA CARE ADĂUGA TEXTUL (itemName) ÎN INTERIORUL ITEMULUI.
+        // --- Imaginea (din CSS) nu se vedea din cauza textului (din JS).
         
         // Adaugă event listener
         item.addEventListener('click', () => selectItem(item));
@@ -144,5 +145,13 @@ function initializeSimulator() {
     updateTradeUpButton();
     renderSelectedItems();
 }
+
+initializeSimulator();
+    });
+
+    updateTradeUpButton();
+    renderSelectedItems();
+}
+
 
 initializeSimulator(); // Apelez noua funcție de inițializare
